@@ -1,0 +1,13 @@
+pkgbase = marauder
+	pkgdesc = Documentation tool for terminal commands
+	pkgver = 2021.1
+	pkgrel = 1
+	url = https://alexanderbrevig.com/marauder
+	arch = x86_64
+	license = MIT
+	makedepends = go
+	source = marauder-2021.1.tar.gz::https://github.com/AlexanderBrevig/marauder/archive/v2021.1.tar.gz
+	md5sums = 29b9625e78c6a3a4a1b01ed1a9575085
+
+pkgname = marauder
+
