@@ -1,9 +1,5 @@
 package main
 
-//=============================================================================
-// WORK IN PROGRESS
-//=============================================================================
-
 import (
 	"bufio"
 	"bytes"
@@ -13,7 +9,6 @@ import (
 	"os"
 	"os/exec"
 	"os/user"
-	"runtime"
 	"strings"
 	"time"
 )
@@ -32,6 +27,7 @@ func main() {
 
 	//TODO: verify args len
 	//TODO: print usage
+	cmd := exec.Command(os.Args[1], os.Args[2:]...)
 
 	var stdoutBuf, stderrBuf bytes.Buffer
 	cmd.Stdout = io.MultiWriter(os.Stdout, &stdoutBuf)

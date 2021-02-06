@@ -25,7 +25,9 @@
   <h3 align="center">Marauder</h3>
 
   <p align="center">
-    A tool for documenting CLI operations. > I solemnly swear I am up to no good.
+    A tool for documenting CLI operations. 
+    <br />
+    <quote>I solemnly swear I am up to no good.</quote>
     <br />
     <a href="https://github.com/alexanderbrevig/marauder"><strong>Explore the docs »</strong></a>
     <br />
