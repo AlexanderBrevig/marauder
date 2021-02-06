@@ -165,15 +165,15 @@ Project Link: [https://github.com/alexanderbrevig/marauder](https://github.com/a
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/alexanderbrevig/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/alexanderbrevig/repo/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/alexanderbrevig/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/alexanderbrevig/repo/network/members
-[stars-shield]: https://img.shields.io/github/stars/alexanderbrevig/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/alexanderbrevig/repo/stargazers
-[issues-shield]: https://img.shields.io/github/issues/alexanderbrevig/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/alexanderbrevig/repo/issues
-[license-shield]: https://img.shields.io/github/license/alexanderbrevig/repo.svg?style=for-the-badge
-[license-url]: https://github.com/alexanderbrevig/repo/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/alexanderbrevig/marauder.svg?style=for-the-badge
+[contributors-url]: https://github.com/alexanderbrevig/marauder/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/alexanderbrevig/marauder.svg?style=for-the-badge
+[forks-url]: https://github.com/alexanderbrevig/marauder/network/members
+[stars-shield]: https://img.shields.io/github/stars/alexanderbrevig/marauder.svg?style=for-the-badge
+[stars-url]: https://github.com/alexanderbrevig/marauder/stargazers
+[issues-shield]: https://img.shields.io/github/issues/alexanderbrevig/marauder.svg?style=for-the-badge
+[issues-url]: https://github.com/alexanderbrevig/marauder/issues
+[license-shield]: https://img.shields.io/github/license/alexanderbrevig/marauder.svg?style=for-the-badge
+[license-url]: https://github.com/alexanderbrevig/marauder/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/alexanderbrevig
