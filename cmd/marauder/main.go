@@ -4,11 +4,14 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
+	"github.com/fogleman/gg"
+	"image/color"
 	"io"
 	"log"
 	"os"
 	"os/exec"
 	"os/user"
+	"path/filepath"
 	"strings"
 	"time"
 )
@@ -74,5 +77,22 @@ func main() {
 	err = xclip.Run()
 	if err != nil {
 		log.Fatalf("xclip failed with %s\n", err)
+	}
+
+	dc := gg.NewContext(1200, 628)
+	fontPath := filepath.Join("assets", "FiraCode-Regular.ttf")
+	if err := dc.LoadFontFace(fontPath, 80); err != nil {
+		log.Fatal(err)
+	}
+	dc.SetColor(color.White)
+	s := "TEST text"
+	marginX := 50.0
+	marginY := -10.0
+	textWidth, textHeight := dc.MeasureString(s)
+	x := float64(dc.Width()) - textWidth - marginX
+	y := float64(dc.Height()) - textHeight - marginY
+	dc.DrawString(s, x, y)
+	if err := dc.SavePNG("test.png"); err != nil {
+		log.Fatal(err)
 	}
 }
