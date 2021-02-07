@@ -1,11 +1,4 @@
 <!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -19,7 +12,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/alexanderbrevig/marauder">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="assets/logo.png" alt="Logo" width="256" height="265">
   </a>
 
   <h3 align="center">Marauder</h3>
@@ -32,11 +25,8 @@
     <a href="https://github.com/alexanderbrevig/marauder"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/alexanderbrevig/marauder">View Demo</a>
     ·
-    <a href="https://github.com/alexanderbrevig/marauder/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/alexanderbrevig/marauder/issues">Request Feature</a>
+    <a href="https://github.com/alexanderbrevig/marauder/issues">Report Features & Bug</a>
   </p>
 </p>
 
@@ -73,12 +63,35 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Marauder Screen Shot][product-screenshot]](https://example.com)
+First run the project.
+I may suggest aliasing it to `log` `proof` `oscplog` whatever fits your needs.
 
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`alexanderbrevig`, `marauder`, `alexanderbrevig`, `alexanderbrevig@gmail.com`, `Marauder`, `A tool for documenting CLI operations. > I solemnly swear I am up to no good.`
+    marauder ls -la
+ 
+Running this command will create one a text file for future reference.
 
+    alexander@devbox:/home/alexander/github.com/marauder$ ls -la
+    totalt 72
+    drwxr-xr-x 8 alexander alexander 4096 feb.   8 00:37 .
+    drwxr-xr-x 9 alexander alexander 4096 feb.   5 23:00 ..
+    drwxr-xr-x 2 alexander alexander 4096 feb.   8 00:38 assets
+    drwxr-xr-x 3 alexander alexander 4096 feb.   5 23:03 cmd
+    drwxr-xr-x 8 alexander alexander 4096 feb.   7 23:06 .git
+    drwxr-xr-x 3 alexander alexander 4096 feb.   6 01:12 .github
+    -rw-r--r-- 1 alexander alexander  289 feb.   6 01:29 .gitignore
+    -rw-r--r-- 1 alexander alexander  250 feb.   7 23:06 go.mod
+    -rw-r--r-- 1 alexander alexander  681 feb.   7 23:06 go.sum
+    -rw-r--r-- 1 alexander alexander 6377 feb.   8 00:37 index.html
+    -rw-r--r-- 1 alexander alexander 1073 feb.   7 23:06 LICENSE
+    drwxr-xr-x 2 alexander alexander 4096 feb.   8 00:12 logo
+    drwxr-xr-x 3 alexander alexander 4096 feb.   7 23:06 pkg
+    -rw-r--r-- 1 alexander alexander  981 feb.   6 02:03 PKGBUILD
+    -rw-r--r-- 1 alexander alexander 5407 feb.   8 00:37 README.md
+    -rw-r--r-- 1 alexander alexander  358 feb.   6 02:07 .SCRINFO
+
+You will also get a fake screenshot of a terminal, handy for writing reports.
+
+<p align="center"><img src="assets/terminal.png"/></p>
 
 ### Built With
 
@@ -93,8 +106,6 @@ To get a local copy up and running follow these simple steps.
 ### Prerequisites
 
 * golang
-* scrot
-* xclip
 
 ### Installation
 
@@ -106,13 +117,16 @@ To get a local copy up and running follow these simple steps.
    ```go
    go run cmd/marauder/main.go ls -la
    ```
-
+3. Install if you want
+   ```sh
+   GOBIN=/usr/local/bin/ go install cmd/marauder/marauder.go
+   ```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-   ```go
-   go run cmd/marauder/main.go ls -la
+   ```sh
+   marauder ls -la
    ```
 
 You will now have a file called ls-DATE.txt with the output of ls, and a ls-DATE.png with a screenshot of the terminal.
@@ -157,12 +171,7 @@ Project Link: [https://github.com/alexanderbrevig/marauder](https://github.com/a
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-* []()
-* []()
-* []()
-
-
-
+* [Amazing Go Graphics Library](github.com/fogleman/gg)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
