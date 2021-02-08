@@ -17,6 +17,4 @@ jobs:
     - name: Test
       run: go test ./...
     - name: Build
-      run: |
-        echo "GO111MODULE=on" >> $GITHUB_ENV
-        go build cmd/marauder/marauder.go
+      run: build cmd/marauder/marauder.go
