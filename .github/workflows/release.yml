@@ -8,8 +8,10 @@ name: Upload Release Asset
 
 jobs:
   build:
-    name: Upload Release Asset
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Install Go
         uses: actions/setup-go@v2
@@ -18,7 +20,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Build project # This would actually build your project, using zip for an example artifact
-        run: go build -o marauder cmd/marauder/main.go
+        run: go build -o marauder-${{ matrix.os }} cmd/marauder/marauder.go
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -26,7 +28,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: marauder ${{ github.ref }}
+          release_name: marauder ${{ matrix.os }} ${{ github.ref }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
