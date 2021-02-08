@@ -17,4 +17,4 @@ jobs:
     - name: Test
       run: go test ./...
     - name: Build
-      run: build cmd/marauder/marauder.go
+      run: go build cmd/marauder/marauder.go
