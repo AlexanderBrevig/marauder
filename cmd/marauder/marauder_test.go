@@ -1,4 +1,4 @@
-package marauder
+package main
 
 import "testing"
 

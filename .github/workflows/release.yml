@@ -19,6 +19,8 @@ jobs:
           go-version: 1.15.x 
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Test project
+        run: go test ./...
       - name: Build project # This would actually build your project, using zip for an example artifact
         run: go build -o marauder-${{ matrix.os }} cmd/marauder/marauder.go
       - name: Create Release

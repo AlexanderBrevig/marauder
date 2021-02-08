@@ -1,4 +1,4 @@
-package marauder
+package main
 
 import (
 	"bufio"
@@ -54,6 +54,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("cmd.Run() failed with %s\n", err)
 	}
+	cmd.Wait()
 	outStr, errStr := string(stdoutBuf.Bytes()), string(stderrBuf.Bytes())
 	dateStr := time.Now().Format("2006-01-02_15:04:05")
 	filename := fmt.Sprintf("%s-%s", dateStr, os.Args[1])
@@ -79,8 +80,6 @@ func main() {
 		fmt.Fprint(errw, errStr)
 		errw.Flush()
 	}
-	cmd.Wait()
-	time.Sleep(1 * time.Second)
 
 	bgMargin := 10.0
 	textMargin := 10.0
