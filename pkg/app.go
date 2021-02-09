@@ -11,12 +11,17 @@ import (
 	"path/filepath"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/kennygrant/sanitize"
 )
 
-func FileName(content string) string {
+func FileName(config Config, content string) string {
+	dateStr := time.Now().Format("2006-01-02_15:04:05")
 	filename := strings.Join(os.Args[1:], " ")
+	if config.DatePrefix {
+		filename = fmt.Sprintf("%s %s", dateStr, filename)
+	}
 	filename = filename + "-" + strconv.Itoa(len(content))
 	filename = sanitize.Path(filename)
 	filename = strings.ReplaceAll(filename, "/", "[slash]")
@@ -45,12 +50,18 @@ func Exec() (string, string) {
 }
 
 func WriteFile(config Config, fileName string, content string) {
+	if len(content) == 0 {
+		return
+	}
 	path := filepath.Join(config.OutDir, fileName)
 	f, err := os.Create(path)
 	defer f.Close()
 	if err != nil {
 		panic(err)
 	}
+	shline := ShellLine(config.UserName, config.HostName, config.Dir)
+	content = shline + "\n" + content
+
 	w := bufio.NewWriter(f)
 	fmt.Fprint(w, content)
 	w.Flush()
