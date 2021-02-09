@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	fontPath := filepath.Join("assets", "FiraCode-Regular.ttf")
+	fontPath := filepath.Join("fonts", "FiraCode-Regular.ttf")
 
 	size := 256
 	if len(os.Args) > 1 {
