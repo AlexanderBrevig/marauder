@@ -19,13 +19,12 @@ func ShellLine(userName string, hostName string, dir string) string {
 }
 
 func DrawConsole(config Config, fileName string, userName string, hostName string, dir string, outStr string) {
-	bgMargin := 10.0
-	textMargin := 10.0
+	bgMargin := math.Max(0, config.TerminalMargin)
+	textMargin := math.Max(0, config.TextMargin)
 	buttonRadius := 6.0
 	titleFontSize := 12.0
-	fontSize := 16.0
+	fontSize := config.FontSize
 	// TODO: But why?
-	adjustedFontsize := fontSize
 	lineLimit := int(math.Min(80.0, float64(config.LineLimit)))
 	// TODO: Serioiusly.. wtf is up with 0.58?????333
 	lineWidth := fontSize * float64(lineLimit) * 0.58333
@@ -39,7 +38,7 @@ func DrawConsole(config Config, fileName string, userName string, hostName strin
 	}
 
 	toolbarHeight := bgMargin + textMargin + buttonRadius
-	contextHeight := lines*int(adjustedFontsize*lineSpacing) + int(bgMargin*2) + int(textMargin*3) + int(toolbarHeight)
+	contextHeight := lines*int(fontSize*lineSpacing) + int(bgMargin*2) + int(textMargin*3) + int(toolbarHeight)
 	contextWidth := int(lineWidth) + int(bgMargin*2) + int(textMargin*2)
 
 	dc := gg.NewContext(contextWidth, contextHeight)
