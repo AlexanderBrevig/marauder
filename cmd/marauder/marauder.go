@@ -26,3 +26,15 @@ func main() {
 	}
 	marauder.DrawConsole(config, filename, config.UserName, config.HostName, config.Dir, outStr)
 }
+
+func LoadFontFace(fontBytes []byte, points float64) (font.Face, error) {
+	f, err := truetype.Parse(fontBytes)
+	if err != nil {
+		return nil, err
+	}
+	face := truetype.NewFace(f, &truetype.Options{
+		Size: points,
+		// Hinting: font.HintingFull,
+	})
+	return face, nil
+}
