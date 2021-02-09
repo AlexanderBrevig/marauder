@@ -129,8 +129,30 @@ To get a local copy up and running follow these simple steps.
    marauder ls -la
    ```
 
-You will now have a file called ls-DATE.txt with the output of ls, and a ls-DATE.png with a screenshot of the terminal.
+You will now have a file called `$DATE ls -la.txt` with the output of ls, and a `$DATE ls -la.png` with a simulated screenshot of the terminal.
 
+### Configuratoin
+
+Place a `.marauder.yml` in your home directory. 
+
+    # /home/alexander/.marauder.yml 
+    #userName: alexander
+    #hostName: devbox
+    outDir: /home/alexander/github.com/marauder/test
+    datePrefix: false
+    lineLimit: 100
+    colors:
+        button1: "ff0000"
+        button2: "ffff00"
+        button3: "00ff00"
+        background: "060606"
+        title: "666666"
+        userName: "89b482"
+        at: "ffffff"
+        hostName: "ea6962"
+        dollar: "ffffff"
+        command: "ff0000"
+        terminal: "ffffff"
 
 <!-- ROADMAP -->
 ## Roadmap
