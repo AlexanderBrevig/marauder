@@ -5,13 +5,15 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/fogleman/gg"
+	"github.com/gobuffalo/packr"
+	"github.com/golang/freetype/truetype"
+	"golang.org/x/image/font"
 	"image/color"
 	"io"
 	"log"
 	"os"
 	"os/exec"
 	"os/user"
-	"path/filepath"
 	"strings"
 	"time"
 )
@@ -87,13 +89,12 @@ func main() {
 	titleFontSize := 12.0
 	fontSize := 16.0
 	// TODO: But why?
-	adjustedFontsize := fontSize * 0.75
+	adjustedFontsize := fontSize
 	// TODO: minium 80
 	lineLimit := 80
 	// TODO: Serioiusly.. wtf is up with 0.58?????333
 	lineWidth := fontSize * float64(lineLimit) * 0.58333
-	lineSpacing := 1.5
-	fontPath := filepath.Join("assets", "FiraCode-Regular.ttf")
+	lineSpacing := 1.0
 
 	lines := 0
 	for _, line := range strings.Split(outStr, "\n") {
@@ -112,18 +113,27 @@ func main() {
 	dc.DrawRoundedRectangle(bgMargin, bgMargin, float64(contextWidth)-bgMargin*2, float64(contextHeight)-bgMargin*2, bgMargin)
 	dc.Fill()
 
-	if err := dc.LoadFontFace(fontPath, titleFontSize); err != nil {
+	box := packr.NewBox("../../fonts")
+	fontBytes, err := box.Find("FiraCode-Regular.ttf")
+	if err != nil {
 		log.Fatal(err)
 	}
+	font, err := LoadFontFace(fontBytes, titleFontSize)
+	if err != nil {
+		log.Fatal(err)
+	}
+	dc.SetFontFace(font)
 
 	dc.SetHexColor("666666")
 	title := os.Args[1] + " " + dir
 	titleWidth, _ := dc.MeasureString(title)
 	dc.DrawString(title, (float64(dc.Width())/2 - (titleWidth / 2)), bgMargin+textMargin+(buttonRadius*1.75))
 
-	if err := dc.LoadFontFace(fontPath, fontSize); err != nil {
+	font, err = LoadFontFace(fontBytes, fontSize)
+	if err != nil {
 		log.Fatal(err)
 	}
+	dc.SetFontFace(font)
 
 	dc.SetHexColor("ff0000")
 	dc.DrawCircle(bgMargin+textMargin+buttonRadius, bgMargin+textMargin+buttonRadius, buttonRadius)
@@ -172,4 +182,16 @@ func main() {
 	if err := dc.SavePNG(filename + ".png"); err != nil {
 		log.Fatal(err)
 	}
+}
+
+func LoadFontFace(fontBytes []byte, points float64) (font.Face, error) {
+	f, err := truetype.Parse(fontBytes)
+	if err != nil {
+		return nil, err
+	}
+	face := truetype.NewFace(f, &truetype.Options{
+		Size: points,
+		// Hinting: font.HintingFull,
+	})
+	return face, nil
 }
