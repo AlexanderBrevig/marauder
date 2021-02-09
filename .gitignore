@@ -1,4 +1,6 @@
 /marauder
+*-ls.txt
+*-ls.png
 index.html
 # Binaries for programs and plugins
 *.exe
