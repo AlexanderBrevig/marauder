@@ -131,9 +131,10 @@ To get a local copy up and running follow these simple steps.
 
 You will now have a file called `$DATE ls -la.txt` with the output of ls, and a `$DATE ls -la.png` with a simulated screenshot of the terminal.
 
-### Configuratoin
+### Configuration
 
 Place a `.marauder.yml` in your home directory. 
+Optionally choose any location and set `MARAUDER_CONFIG` to point to that directory.
 
     # /home/alexander/.marauder.yml 
     #userName: alexander
@@ -141,6 +142,9 @@ Place a `.marauder.yml` in your home directory.
     outDir: /home/alexander/github.com/marauder/test
     datePrefix: false
     lineLimit: 100
+    fontSIze: 16
+    terminalMargin: 10
+    textMargin: 10
     colors:
         button1: "ff0000"
         button2: "ffff00"
@@ -153,6 +157,15 @@ Place a `.marauder.yml` in your home directory.
         dollar: "ffffff"
         command: "ff0000"
         terminal: "ffffff"
+
+It is also worth knowing that every config has a corresponding environment variable.
+
+They map such that the `userName` stanza becomes `MARAUDER_USER_NAME`. 
+You can also override colors with `MARAUDER_COLOR_*`.
+
+If you want to signal something as green, do
+
+    MARAUDER_COLOR_COMMAND="00ff00" marauder ls -la
 
 <!-- ROADMAP -->
 ## Roadmap
