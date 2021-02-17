@@ -14,5 +14,8 @@ func main() {
 
 	marauder.WriteFile(config, filename+".txt", outStr)
 	marauder.WriteFile(config, "error "+filename+".txt", errStr)
+	if len(errStr) > 0 {
+		marauder.DrawConsole(config, "error-"+filename, config.UserName, config.HostName, config.Dir, errStr)
+	}
 	marauder.DrawConsole(config, filename, config.UserName, config.HostName, config.Dir, outStr)
 }
