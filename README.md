@@ -115,11 +115,11 @@ To get a local copy up and running follow these simple steps.
    ```
 2. Run the program
    ```go
-   go run cmd/marauder/main.go ls -la
+   go run ./cmd/marauder ls -la
    ```
 3. Install if you want
    ```sh
-   GOBIN=/usr/local/bin/ go install cmd/marauder/marauder.go
+   GOBIN=/usr/local/bin/ go install ./cmd/marauder
    ```
 
 <!-- USAGE EXAMPLES -->
@@ -133,10 +133,10 @@ You will now have a file called `$DATE ls -la.txt` with the output of ls, and a 
 
 ### Configuration
 
-Place a `.marauder.yml` in your home directory. 
+Place a `.marauder.yml` in your home directory.
 Optionally choose any location and set `MARAUDER_CONFIG` to point to that directory.
 
-    # /home/alexander/.marauder.yml 
+    # /home/alexander/.marauder.yml
     #userName: alexander
     #hostName: devbox
     outDir: /home/alexander/github.com/marauder/test
@@ -160,7 +160,7 @@ Optionally choose any location and set `MARAUDER_CONFIG` to point to that direct
 
 It is also worth knowing that every config has a corresponding environment variable.
 
-They map such that the `userName` stanza becomes `MARAUDER_USER_NAME`. 
+They map such that the `userName` stanza becomes `MARAUDER_USER_NAME`.
 You can also override colors with `MARAUDER_COLOR_*`.
 
 If you want to signal something as green, do
@@ -197,7 +197,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@alexanderbrevig](https://twitter.com/alexanderbrevig) - alexanderbrevig@gmail.com
+Alexander Brevig - [@alexanderbrevig](https://twitter.com/alexanderbrevig) - alexanderbrevig@gmail.com
 
 Project Link: [https://github.com/alexanderbrevig/marauder](https://github.com/alexanderbrevig/marauder)
 
