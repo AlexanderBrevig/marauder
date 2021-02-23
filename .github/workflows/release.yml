@@ -1,45 +1,51 @@
 on:
   push:
-    # Sequence of patterns matched against refs/tags
     tags:
     - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 name: Upload Release Asset
 
 jobs:
-  build:
+  release:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+        go_version: [1.15.x]
+    runs-on: ubuntu-latest
     steps:
-      - name: Install Go
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: 1.15.x 
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Test project
+          go-version: ${{ matrix.go_version }}
+      - name: Test Pre-Publish
         run: go test ./...
-      - name: Build project # This would actually build your project, using zip for an example artifact
-        run: go build -o marauder-${{ matrix.os }} cmd/marauder/marauder.go
+      - name: Build with xgo
+        uses: crazy-max/ghaction-xgo@v1
+        with:
+          xgo_version: latest
+          go_version: ${{ matrix.go_version }}
+          dest: build
+          prefix: marauder
+          targets: windows/386,windows/amd64,linux/386,linux/amd64,darwin/386,darwin/amd64
+          v: true
+          x: false
+          ldflags: -s -w
+          buildmode: default
       - name: Create Release
+        uses: actions/create-release@v1.0.0
         id: create_release
-        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ matrix.os }}-${{ github.ref }}
-          release_name: marauder ${{ matrix.os }} ${{ github.ref }}
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
-      - name: Upload Release Asset
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1
+      - name: Upload Release Assets
+        uses: glentiki/xbin-release-action@v1.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./marauder-${{ matrix.os }}
-          asset_name: marauder
-          asset_content_type: application/octet-stream
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          assets_path: ./build
